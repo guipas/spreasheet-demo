@@ -9,6 +9,7 @@ const initialState = {
   width: 10,
   height: 10,
   currentSelection : null,
+  selectedCellValue: ``,
 };
 
 export default function(state = initialState, action) {
@@ -28,19 +29,22 @@ export default function(state = initialState, action) {
       };
     }
     case SELECT_CELL: {
+      console.log('select cell', action.payload);
       const {x , y} = action.payload;
       return {
         ...state,
+        selectedCellValue : state.rows[x][y].value,
         currentSelection : { x, y },
         rows : updateCellFieldFromCoordinates(
           updateAllCellsFields(state.rows, `selected`, false), 
           {x, y}, 
           `selected`, 
           true
-        ),
+          ),
+        }
       }
-    }
-    case SELECT_TO_CELL: {
+      case SELECT_TO_CELL: {
+        console.log('select to cell', action.payload);
       const {x , y} = action.payload;
       const fromX = state.currentSelection ? state.currentSelection.x : x;
       const fromY = state.currentSelection ? state.currentSelection.y : y;

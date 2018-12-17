@@ -1,0 +1,19 @@
+.spreadsheet-app {
+  font-family: sans-serif;
+}
+
+.rows .row {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.rows .row .cell {
+  width: 90px;
+  height: 30px;
+  padding: 2px;
+
+}
+
+.rows .row .cell.selected {
+  border: 2px solid blue;
+}

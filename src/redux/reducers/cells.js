@@ -25,6 +25,7 @@ export default function(state = initialState, action) {
       const { value } = action.payload;
       return {
         ...state,
+        selectedCellValue : value,
         rows : updateAllSelectedCellsFields(state.rows, `value`, value),
       };
     }

@@ -11,11 +11,22 @@ const Sheet = ({ rows, selectCell, selectToCell, updateSelectedCells, selectedCe
     </div>
     <div className="rows">
       {rows.map((row, x) => {
-        return (
-          <div className="row" key={`row-${x}`}>
+        return [
+          // columns header :
+          (x === 0
+            ?
+            (<div className="row"><div class="cell"></div>{row.map((cell, y) => (<div className="cell cell-head">{y}</div>))}</div>)
+            : 
+            ''
+          ),
+          // rows :
+          (
+            <div className="row" key={`row-${x}`}>
               {row.map((cell, y) => {
                 return [
+                    // row header :
                     (y === 0 ? (<div key={`h${x}_${y}`} className="cell cell-head">{x}</div>) : ''),
+                    // cells data :
                     (<Cell 
                       key={`${x}_${y}`}
                       selected={cell.selected}
@@ -28,7 +39,8 @@ const Sheet = ({ rows, selectCell, selectToCell, updateSelectedCells, selectedCe
                 ];
               })}
             </div>
-        );
+          )
+        ];
       })}
     </div>
 
